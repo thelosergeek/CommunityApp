@@ -7,9 +7,11 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -19,6 +21,7 @@ class ProfileActivity : AppCompatActivity() {
 
     val storage by lazy { FirebaseStorage.getInstance() }
     val authorization by lazy { FirebaseAuth.getInstance() }
+    val database by lazy { FirebaseFirestore.getInstance() }
     lateinit var imageDownloadUrl: String
 
 
@@ -28,6 +31,29 @@ class ProfileActivity : AppCompatActivity() {
 
         defaultavatar.setOnClickListener {
             checkStoragePermission()
+        }
+        btnsave.setOnClickListener {
+            btnsave.isEnabled = false
+            val name = name_edt_text.text.toString()
+            val skills = skills_edt_text.text.toString()
+            if(name.isEmpty() && skills.isEmpty())
+            {
+                    Toast.makeText(this,"Please Enter Required Fields", Toast.LENGTH_SHORT).show()
+            }
+            else if(!::imageDownloadUrl.isInitialized)
+            {
+                Toast.makeText(this,"Please Upload Image", Toast.LENGTH_SHORT).show()
+
+            }
+            else{
+                val user = User(name,imageDownloadUrl,imageDownloadUrl,authorization.uid!!)
+                database.collection("users").document(authorization.uid!!).set(user).addOnSuccessListener {
+                    startActivity(Intent(this,MainActivity::class.java))
+                    finish()
+                }.addOnFailureListener {
+                    btnsave.isEnabled = true
+                }
+            }
         }
     }
 

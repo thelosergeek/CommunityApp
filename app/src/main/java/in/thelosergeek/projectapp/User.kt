@@ -9,12 +9,12 @@ data class User(
     val uid: String,
     val deviceToken: String,
     val skills: String,
-    val online: FieldValue
+    val online: String
     ) {
 
     constructor() : this("","","","","","","")
 
     constructor(name: String, imageUrl: String, thumbImage: String, uid: String) : this(
-        name, imageUrl, thumbImage, uid, "","", FieldValue.serverTimestamp()
+        name, imageUrl, thumbImage, uid, "","", ""
     )
 }
