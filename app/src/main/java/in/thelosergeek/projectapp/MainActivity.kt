@@ -1,6 +1,7 @@
 package `in`.thelosergeek.projectapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,20 +9,32 @@ import android.system.Os.close
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var toogle: ActionBarDrawerToggle
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
+        auth = FirebaseAuth.getInstance()
 
 
         setUpNavigationDrawer()
         setUpFragments()
+
+//        if(auth.currentUser == null){
+//            val intent = Intent(this, LoginActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }else{
+//            Toast.makeText(this, "Already logged in", Toast.LENGTH_LONG).show()
+//        }
 
     }
 
@@ -36,7 +49,19 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId)
             {
-                R.id.myprofile -> Toast.makeText(this,"My Profile CLicekd", Toast.LENGTH_SHORT).show()
+                R.id.myprofile -> {
+                    startActivity(Intent(this, ProfileActivity::class.java))
+                }
+                R.id.friends -> {
+                    startActivity(Intent(this,FriendsActivtiy::class.java))
+                }
+                R.id.inbox -> {
+                    startActivity(Intent(this,InboxActivity::class.java))
+                }
+                R.id.logout -> {
+                    FirebaseAuth.getInstance().signOut()
+                    startActivity(Intent(this,LoginActivity::class.java))
+                }
             }
             true
 
@@ -60,5 +85,20 @@ class MainActivity : AppCompatActivity() {
         tablayout.getTabAt(0)?.setIcon(R.drawable.project)
         tablayout.getTabAt(1)?.setIcon(R.drawable.feeds)
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val currentUser = auth.currentUser
+
+        if(currentUser == null){
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        else{
+            Toast.makeText(this, "Already logged in", Toast.LENGTH_LONG).show()
+        }
     }
 }
