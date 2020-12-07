@@ -7,6 +7,7 @@
     android1:clickable="true"
     android1:focusable="true"
     android1:orientation="horizontal"
+    android:background="?attr/selectableItemBackground"
     android1:padding="10dp" >
 
 

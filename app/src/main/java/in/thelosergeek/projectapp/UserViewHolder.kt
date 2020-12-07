@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.singleuserlayout.view.*
 
 class UserViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
-    fun bind(user: User) = with(itemView){
+    fun bind(user: User,onClick: (name: String, photo: String, id: String)-> Unit) = with(itemView){
 
         messagecountTV.isVisible =  false
         timeTV.isVisible = false
@@ -21,5 +21,11 @@ class UserViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
             .placeholder(R.drawable.defaultavatar)
             .error(R.drawable.defaultavatar)
             .into(profile_image)
+
+        setOnClickListener{
+            onClick.invoke(user.name,user.thumbImage,user.uid)
+        }
+
+
     }
 }
