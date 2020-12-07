@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
@@ -42,6 +43,10 @@ class ChatActivity : AppCompatActivity() {
     lateinit var currentUser: User
 
     private val messages = mutableListOf<ChatEvent>()
+    lateinit var chatAdapter: ChatAdapter
+
+    private val mutableItems: MutableList<ChatEvent> = mutableListOf()
+    private val mLinearLayout: LinearLayoutManager by lazy { LinearLayoutManager(this) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,12 +58,20 @@ class ChatActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 currentUser = it.toObject(User::class.java)!!
             }
+
         val emojiPopup = EmojiPopup.Builder.fromRootView(rootView).build(msgEdtv)
         smileBtn.setOnClickListener {
             emojiPopup.toggle()
         }
 
+        chatAdapter = ChatAdapter(mutableItems, mCurrentUid)
 
+        msgRv.apply {
+            layoutManager = mLinearLayout
+            adapter = chatAdapter
+        }
+
+        alreadyRead() /**/
         nameTv.text = name
         Picasso.get().load(image).into(userImgView)
 
@@ -71,6 +84,19 @@ class ChatActivity : AppCompatActivity() {
                 }
             }
         }
+
+        readMessages() { msg, update ->
+            if (update) {
+                updateMessage(msg)
+            } else {
+                addMessage(msg)
+            }
+
+        }
+    }
+
+    private fun updateMessage(msg: MessageModel) {
+
     }
 
     private fun sendMessage(msg: String) {
@@ -105,8 +131,8 @@ class ChatActivity : AppCompatActivity() {
                     count = 1
                 }
 
-                    if (value?.sender == messageModel.senderId) {
-                        inboxmap.count = value.count + 1
+                if (value?.sender == messageModel.senderId) {
+                    inboxmap.count = value.count + 1
 
                 }
                 getInbox(friendId, mCurrentUid).setValue(inboxmap)
@@ -119,19 +145,21 @@ class ChatActivity : AppCompatActivity() {
         })
     }
 
-    private fun alreadyRead(){
-        getInbox(friendId,mCurrentUid).child("count").setValue(0)
+    private fun alreadyRead() {
+        getInbox(friendId, mCurrentUid).child("count").setValue(0)
     }
 
-    private fun readMessages(){
-        getMessages(friendId).orderByKey().addChildEventListener(object :ChildEventListener{
+    private fun readMessages(newMsg: (msg: MessageModel, update: Boolean) -> Unit) {
+        getMessages(friendId).orderByKey().addChildEventListener(object : ChildEventListener {
+
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val msg = snapshot.getValue(MessageModel::class.java)!!
-                addMessage(msg)
+                newMsg(msg, false)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
+                val msg = snapshot.getValue(MessageModel::class.java)!!
+                newMsg(msg, true)
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
@@ -150,11 +178,16 @@ class ChatActivity : AppCompatActivity() {
     }
 
     private fun addMessage(msg: MessageModel) {
-        val eventBefore =  messages.lastOrNull()
-        if(eventBefore != null && eventBefore.sentAt.isSameDayAs(msg.sentAt)){
-            messages.
+        val eventBefore = mutableItems.lastOrNull()
+        if ((eventBefore != null && !eventBefore.sentAt.isSameDayAs(msg.sentAt)) || eventBefore == null) {
+            mutableItems.add(DateHeader(msg.sentAt,this))
         }
+        mutableItems.add(msg)
+
+        chatAdapter.notifyItemInserted(mutableItems.size - 1)
+        msgRv.scrollToPosition(mutableItems.size - 1)
     }
+
 
     /**/
 

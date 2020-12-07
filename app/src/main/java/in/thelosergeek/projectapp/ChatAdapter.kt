@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.chat_received_layout.view.*
 import kotlinx.android.synthetic.main.item_date.view.*
 
-class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurrentuid: String):
+class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurrentUser: String):
         RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -39,10 +39,9 @@ class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurren
                holder.itemView.textView.text = item.date
            }
            is MessageModel -> {
-               holder.itemView.apply {
-                   content.text = item.msg
-                   time.text = item.sentAt.formatAsTime()
-               }
+                   holder.itemView.content.text = item.msg
+                   holder.itemView.time.text = item.sentAt.formatAsTime() //**//
+
            }
 
        }
@@ -55,7 +54,7 @@ class ChatAdapter (private val list: MutableList<ChatEvent>, private val mCurren
         return when(val event = list[position]){
             is MessageModel ->
             {
-               if(event.senderId == mCurrentuid){
+               if(event.senderId == mCurrentUser){
                    TEXT_MESSAGE_SENT
                }
                 else{

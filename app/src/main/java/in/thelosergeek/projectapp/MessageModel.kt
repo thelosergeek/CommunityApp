@@ -20,7 +20,7 @@ data class MessageModel(
 }
 
 data class DateHeader(
-    override val sentAt: Date = Date(), val context: Context
+    override val sentAt: Date, val context: Context
 ):ChatEvent{
     val date:String = sentAt.formatAsHeader(context)
 }

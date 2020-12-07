@@ -32,7 +32,7 @@
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearance="@style/single_message_sent">
+        app:shapeAppearance="@style/ChatShapeApperance">
 
 
         <com.google.android.flexbox.FlexboxLayout
