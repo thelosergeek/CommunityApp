@@ -13,14 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-        <activity android:name=".ChatActivity"></activity>
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".RegistraionActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".InboxActivity" />
-        <activity android:name=".FriendsActivtiy" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.ChatActivity"></activity>
+        <activity android:name=".Activity.ForgotPasswordActivity" />
+        <activity android:name=".Activity.RegistraionActivity" />
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.InboxActivity" />
+        <activity android:name=".Activity.FriendsActivtiy" />
+        <activity android:name=".Activity.ProfileActivity" />
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

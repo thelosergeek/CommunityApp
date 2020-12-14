@@ -1,10 +1,13 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.Activity
 
+import `in`.thelosergeek.projectapp.ViewHolder.EmptyViewHolder
+import `in`.thelosergeek.projectapp.Models.User
+import `in`.thelosergeek.projectapp.R
+import `in`.thelosergeek.projectapp.ViewHolder.UserViewHolder
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,6 +44,7 @@ class FriendsActivtiy : AppCompatActivity() {
             adapter = mAdapter
         }
     }
+    ////////////////////////////////////////////
 
     private fun setUpAdapter() {
         val config = PagedList.Config.Builder()
@@ -53,12 +57,9 @@ class FriendsActivtiy : AppCompatActivity() {
             .setLifecycleOwner(this) //viewLifecycleOwner
             .setQuery(database, config, User::class.java)
             .build()
-
+////////////////////////////////////////
         mAdapter = object : FirestorePagingAdapter<User, RecyclerView.ViewHolder>(options) {
-            override fun onCreateViewHolder(
-                parent: ViewGroup,
-                viewType: Int
-            ): RecyclerView.ViewHolder {
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
                 return when (viewType) {
                     NORMAL_VIEW_Type -> UserViewHolder(
                         layoutInflater.inflate(
@@ -94,14 +95,13 @@ class FriendsActivtiy : AppCompatActivity() {
             ) {
                 if (holder is UserViewHolder) {
                     holder.bind(user = model) { name: String, photo: String, id: String ->
-                        val intent = Intent(this@FriendsActivtiy,ChatActivity::class.java)
-                        intent.putExtra(UID,id)
-                        intent.putExtra(NAME,name)
+                        val intent = Intent(this@FriendsActivtiy, ChatActivity::class.java)
+                        intent.putExtra(UID, id)
+                        intent.putExtra(NAME, name)
 
-                        intent.putExtra(IMAGE,photo)
+                        intent.putExtra(IMAGE, photo)
 
                         startActivity(intent)
-
 
 
                     }

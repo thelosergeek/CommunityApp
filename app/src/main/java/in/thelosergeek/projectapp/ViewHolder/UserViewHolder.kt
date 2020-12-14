@@ -1,5 +1,7 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.ViewHolder
 
+import `in`.thelosergeek.projectapp.Models.User
+import `in`.thelosergeek.projectapp.R
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +10,7 @@ import kotlinx.android.synthetic.main.singleuserlayout.view.*
 
 class UserViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
-    fun bind(user: User,onClick: (name: String, photo: String, id: String)-> Unit) = with(itemView){
+    fun bind(user: User, onClick: (name: String, photo: String, id: String)-> Unit) = with(itemView){
 
         messagecountTV.isVisible =  false
         timeTV.isVisible = false

@@ -1,5 +1,6 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.Activity
 
+import `in`.thelosergeek.projectapp.R
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

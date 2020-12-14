@@ -109,5 +109,8 @@ dependencies {
 
     implementation 'com.vanniktech:emoji-ios:0.7.0'
 
+    implementation 'com.firebaseui:firebase-ui-firestore:6.2.1'
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1'
+
 
 }

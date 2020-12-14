@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="15dp"
+    app:cardCornerRadius="5dp"
+    android:elevation="15dp"
+    app:cardBackgroundColor="@color/White"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:text="Project 1:PYGRID"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/Black"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="5"
+        android:ellipsize="end"
+        android:text="Pygrid is a peer to peer network of data owners and data scientist who can collectively train AI models using PySyft."
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/Black"
+        android:textStyle="normal"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"
+        />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

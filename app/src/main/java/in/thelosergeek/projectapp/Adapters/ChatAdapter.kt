@@ -1,5 +1,10 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.Adapters
 
+import `in`.thelosergeek.projectapp.*
+import `in`.thelosergeek.projectapp.Models.ChatEvent
+import `in`.thelosergeek.projectapp.Models.DateHeader
+import `in`.thelosergeek.projectapp.Models.MessageModel
+import `in`.thelosergeek.projectapp.Utility.formatAsTime
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

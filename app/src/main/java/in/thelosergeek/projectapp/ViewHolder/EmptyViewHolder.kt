@@ -1,4 +1,4 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.ViewHolder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

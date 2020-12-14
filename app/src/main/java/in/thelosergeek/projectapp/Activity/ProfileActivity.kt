@@ -1,12 +1,13 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.Activity
 
+import `in`.thelosergeek.projectapp.Models.User
+import `in`.thelosergeek.projectapp.R
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
@@ -15,7 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import kotlinx.android.synthetic.main.activity_profile.*
-import java.util.jar.Manifest
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -48,7 +48,7 @@ class ProfileActivity : AppCompatActivity() {
             else{
                 val user = User(name,imageDownloadUrl,imageDownloadUrl,authorization.uid!!)
                 database.collection("users").document(authorization.uid!!).set(user).addOnSuccessListener {
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }.addOnFailureListener {
                     btnsave.isEnabled = true

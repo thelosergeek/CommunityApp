@@ -1,11 +1,10 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.Activity
 
-import android.annotation.SuppressLint
+import `in`.thelosergeek.projectapp.*
+import `in`.thelosergeek.projectapp.Adapters.ViewPagerAdapter
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.system.Os.close
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpNavigationDrawer() {
-        toogle = ActionBarDrawerToggle(this,Drawerlayout,toolbar,R.string.open,R.string.close)
+        toogle = ActionBarDrawerToggle(this,Drawerlayout,toolbar, R.string.open, R.string.close)
         Drawerlayout.addDrawerListener(toogle)
         toogle.syncState()
 
@@ -53,14 +52,14 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, ProfileActivity::class.java))
                 }
                 R.id.friends -> {
-                    startActivity(Intent(this,FriendsActivtiy::class.java))
+                    startActivity(Intent(this, FriendsActivtiy::class.java))
                 }
                 R.id.inbox -> {
-                    startActivity(Intent(this,InboxActivity::class.java))
+                    startActivity(Intent(this, InboxActivity::class.java))
                 }
                 R.id.logout -> {
                     FirebaseAuth.getInstance().signOut()
-                    startActivity(Intent(this,LoginActivity::class.java))
+                    startActivity(Intent(this, LoginActivity::class.java))
                 }
             }
             true

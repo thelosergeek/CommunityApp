@@ -1,5 +1,9 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.Activity
 
+import `in`.thelosergeek.projectapp.Adapters.ChatAdapter
+import `in`.thelosergeek.projectapp.Models.*
+import `in`.thelosergeek.projectapp.R
+import `in`.thelosergeek.projectapp.Utility.isSameDayAs
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -93,6 +97,8 @@ class ChatActivity : AppCompatActivity() {
             }
 
         }
+        updateReadCount()
+
     }
 
     private fun updateMessage(msg: MessageModel) {
@@ -106,7 +112,10 @@ class ChatActivity : AppCompatActivity() {
         getMessages(friendId).child(id).setValue(msgMap)
         /**/
         updateLastMessage(msgMap)
+    }
 
+    private fun updateReadCount() {
+        getInbox(mCurrentUid, friendId).child("count").setValue(0)
     }
 
     private fun updateLastMessage(messageModel: MessageModel) {
@@ -202,6 +211,17 @@ class ChatActivity : AppCompatActivity() {
             mCurrentUid + friendId
         } else {
             friendId + mCurrentUid
+        }
+    }
+    companion object {
+
+        fun createChatActivity(context: Context, id: String, name: String, image: String): Intent {
+            val intent = Intent(context, ChatActivity::class.java)
+            intent.putExtra(UID, id)
+            intent.putExtra(NAME, name)
+            intent.putExtra(IMAGE, image)
+
+            return intent
         }
     }
 }

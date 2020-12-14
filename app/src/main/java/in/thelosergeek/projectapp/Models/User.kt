@@ -1,4 +1,4 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.Models
 
 import com.google.firebase.firestore.FieldValue
 

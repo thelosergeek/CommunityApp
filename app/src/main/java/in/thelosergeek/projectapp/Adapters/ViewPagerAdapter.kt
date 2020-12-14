@@ -1,4 +1,4 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.Adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

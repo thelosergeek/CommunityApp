@@ -1,5 +1,6 @@
-package `in`.thelosergeek.projectapp
+package `in`.thelosergeek.projectapp.Utility
 
+import `in`.thelosergeek.projectapp.R
 import android.content.Context
 import android.os.Build
 import android.text.format.DateUtils
