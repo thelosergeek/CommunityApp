@@ -6,9 +6,7 @@ UI/UX of App:
 User Authentication : User Authentication using Firebase UI Auth. Users can login using facebook, google, github or
 their own email address which they used to register.
 
-Fig 1.
-Fig 2.
-Fig 3.
+![alt text](https://i.postimg.cc/8PSM20tH/image-000.png) ![alt text]( https://i.postimg.cc/TPpDjM3R/image-001.png) ![alt text](https://i.postimg.cc/pd4nqGmK/image-002.png)
 
 
 Login Screen (Fig1.) , Registration Screen (Fig 2.) and Drawer layout showing the options available to the user (Fig 3.)
