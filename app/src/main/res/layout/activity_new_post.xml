@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.NewPostActivity"
+    android:id="@+id/rootView2">
+
+    <ImageView
+        android:id="@+id/smileBtn"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_baseline_emoji_emotions_24" />
+
+
+    <EditText
+        android:id="@+id/postEdtv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@id/smileBtn"
+        android:background="@android:color/white"
+        android:gravity="top|start"
+        android:hint="Input Post Message Here"
+        android:imeOptions="actionGo"
+        android:inputType="textMultiLine|textCapSentences|textLongMessage|text"
+        android:lineSpacingExtra="5dp"
+        android:maxHeight="120dp"
+        android:maxLength="700"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:singleLine="false"
+        android:textColorHint="#b6b6b6"
+        android:textSize="14sp"
+        android:layout_marginStart="64dp"/>
+
+    <Button
+        android:id="@+id/btn_post"
+        android:text="POST"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
