@@ -1,37 +1,49 @@
-# ProjectApp
+# ProjectApp 
 About The Project
-A Community App that will have the feature and information about the OpenMined Community and its Projects
+A Community App that will have the feature and information about the OpenMined Community and its Projects.
+The app uses firebase for database and authentication, and is written in kotlin. Currently Working on it. :construction:
+
+
 
 UI/UX of App:
-User Authentication : User Authentication using Firebase UI Auth. Users can login using facebook, google, github or
+- [x] User Authentication : User Authentication using Firebase UI Auth. Users can login using Google, Github or
 their own email address which they used to register.
 
 
-<img src="https://i.postimg.cc/8PSM20tH/image-000.png" width="30%"></img>   <img src="https://i.postimg.cc/TPpDjM3R/image-001.png" width="30%"></img>  <img src="https://i.postimg.cc/pd4nqGmK/image-002.png" width="30%"></img> 
+<img src="https://i.ibb.co/9H85LzH/Login-Screen.png" width="30%"></img> <img src="https://i.ibb.co/txZQghy/Register.png" width="30%"></img> <img src="https://i.ibb.co/nchvGbB/Main-Activity.png" width="30%"></img> 
 
 
-Login Screen (Fig1.) , Registration Screen (Fig 2.) and Drawer layout showing the options available to the user (Fig 3.)
+                Login Screen                     Registration Screen                      Drawer layout 
 
 
 
-Projects & Post/Feed page: This will have the details of all the projects currently ongoing.Also, Users have the
+- [ ] Projects & Post/Feed page: This will have the details of all the projects currently ongoing.Also, Users have the
 feature to make a post regarding anything they want and people can react to it using reactions or comments.
 
 
-Fig. 4
-Fig. 5
+<img src="https://i.ibb.co/HnYLbd1/Projects.png" width="30%"></img>
+<img src="https://i.ibb.co/h2sQBF7/image-004.png" width="30%"></img>
 
 
-Projects Screen(Fig. 4) and Feed Section Screen(Fig. 5)
+                Projects Screen                     Feed Section Screen                      
 
 
-Comment and Chat Feature: Users will have the feature to talk to comment on the project and also talk to someone
-privately when they want.
+
+- [x] Chat Feature: Users will have the feature talk to anyone privately when they want.
 
 
-Fig. 6
-Fig. 7
-Fig. 8
+ <img src="https://i.ibb.co/FVZfTFW/Friends.png" width="30%"></img>
+ <img src="https://i.ibb.co/SQRbXhT/Chatting.png" width="30%"></img>
+ 
+ 
+           All Friends Activity                   Chat Activity                     
 
 
-Users can comment on a specific project (Fig. 6), can talk to other persons in the group (Fig. 7 & 8)
+
+Activity | Status
+------------ | -------------
+Login/Register Using Email | :heavy_check_mark:
+Login Using Github | :x:
+Chat Activity | :heavy_check_mark:
+Feeds Fragment | :x:
+Projects Fragment | :x:
