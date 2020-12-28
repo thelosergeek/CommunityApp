@@ -1,7 +1,8 @@
-# ProjectApp 
-About The Project
-A Community App that will have the feature and information about the OpenMined Community and its Projects.
-The app uses firebase for database and authentication, and is written in kotlin. Currently Working on it. :construction:
+# Community App 
+
+An app which helps small organizations and its employees to connect with each other. The app has feed features, which lets everyone to post about anything and get reaction using likes and comments and a chat feature that helps the everyone stay connected. The backend is built on Firebase! Currently Working on it. :construction:
+
+![Download App](https://drive.google.com/drive/u/0/folders/1FGLctXqljXBiMcQmRqd5Yvh6T5uonUQT) :construction: (unstable)
 
 
 
