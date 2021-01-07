@@ -3,7 +3,7 @@ package `in`.thelosergeek.projectapp.Models
 import com.google.firebase.firestore.FieldValue
 
 data class User(
-    val name: String,
+    var name: String,
     val imageUrl: String,
     val thumbImage: String,
     val uid: String,

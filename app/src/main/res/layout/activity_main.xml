@@ -22,7 +22,7 @@
                 android:layout_height="?android:actionBarSize"
                 android:background="#ffffff"
                 android:id="@+id/toolbar"
-                app:title="Project App"
+                app:title="Let's Connect!"
                 app:titleTextColor="@color/Black"/>
 
             <com.google.android.material.tabs.TabLayout

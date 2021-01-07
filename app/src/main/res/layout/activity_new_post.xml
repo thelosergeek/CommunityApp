@@ -1,50 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.NewPostActivity"
-    android:id="@+id/rootView2">
+    android:orientation="vertical"
+    tools:context=".Activity.NewPostActivity">
 
-    <ImageView
-        android:id="@+id/smileBtn"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/ic_baseline_emoji_emotions_24" />
-
-
-    <EditText
-        android:id="@+id/postEdtv"
+    <RelativeLayout
+        android:id="@+id/inputBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
-        android:layout_toEndOf="@id/smileBtn"
-        android:background="@android:color/white"
-        android:gravity="top|start"
-        android:hint="Input Post Message Here"
-        android:imeOptions="actionGo"
-        android:inputType="textMultiLine|textCapSentences|textLongMessage|text"
-        android:lineSpacingExtra="5dp"
-        android:maxHeight="120dp"
-        android:maxLength="700"
-        android:paddingTop="18dp"
-        android:paddingBottom="18dp"
-        android:singleLine="false"
-        android:textColorHint="#b6b6b6"
-        android:textSize="14sp"
-        android:layout_marginStart="64dp"/>
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            app:cardCornerRadius="30dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/emojibtn"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_baseline_emoji_emotions_24" />
+
+                <com.vanniktech.emoji.EmojiEditText
+                    android:id="@+id/postEdtv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toEndOf="@id/emojibtn"
+                    android:background="@android:color/white"
+
+                    android:hint="What's on your mind?"
+                    android:imeOptions="actionGo"
+                    android:inputType="textMultiLine|textCapSentences|textLongMessage|text"
+                    android:lineSpacingExtra="5dp"
+                    android:maxHeight="120dp"
+                    android:maxLength="700"
+                    android:paddingTop="18dp"
+                    android:paddingBottom="18dp"
+                    android:singleLine="false"
+                    android:textColorHint="#b6b6b6"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btn_post"
-        android:text="POST"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="POST"
+        android:layout_gravity="center"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</LinearLayout>

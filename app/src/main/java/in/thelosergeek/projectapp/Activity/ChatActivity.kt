@@ -46,7 +46,7 @@ class ChatActivity : AppCompatActivity() {
 
     lateinit var currentUser: User
 
-    private val messages = mutableListOf<ChatEvent>()
+//    private val messages = mutableListOf<ChatEvent>()
     lateinit var chatAdapter: ChatAdapter
 
     private val mutableItems: MutableList<ChatEvent> = mutableListOf()
@@ -75,7 +75,7 @@ class ChatActivity : AppCompatActivity() {
             adapter = chatAdapter
         }
 
-        alreadyRead() /**/
+        alreadyRead()
         nameTv.text = name
         Picasso.get().load(image).into(userImgView)
 
@@ -197,8 +197,6 @@ class ChatActivity : AppCompatActivity() {
         msgRv.scrollToPosition(mutableItems.size - 1)
     }
 
-
-    /**/
 
     private fun getMessages(friendId: String) = db.reference.child("messages/${getId(friendId)}")
 

@@ -1,40 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:android1="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/selectableItemBackground"
+    app:cardCornerRadius="25dp"
     android1:clickable="true"
     android1:focusable="true"
     android1:orientation="vertical"
-    android:background="?attr/selectableItemBackground"
-    android1:padding="10dp" >
+    android1:padding="10dp">
 
-
-    <TextView
-        android:id="@+id/TV_projectname"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:lines="1"
-        android:textColor="@color/Black"
-        android:text="Project 1: PySyft"
-        android:layout_marginEnd="12dp"
-        android:textStyle="bold"
-        android:ellipsize="end" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_marginTop="5dp"
-        android:id="@+id/TV_projectdescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:lines="5"
-        android:textColor="@color/Black"
-        android:text="Pysft is blah blah blah........."
-        android:layout_marginEnd="12dp"
-        android:ellipsize="end" />
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/project_1"
+                android:textColor="@color/Black"
+                android:textSize="25sp" />
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/TV_projectname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/pysyft"
+                android:textColor="@color/Black"
+                android:textSize="25sp"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/TV_projectdescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="5"
+            android:text="Pysft is blah blah blah........."
+            android:textColor="@color/Black"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>
