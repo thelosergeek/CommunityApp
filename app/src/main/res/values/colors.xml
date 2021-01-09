@@ -6,4 +6,5 @@
     <color name="White">#ffffff</color>
     <color name="Black">#000000</color>
     <color name="transparent">#00000000</color>
+    <color name="skeleton">#E0E0E0</color>
 </resources>

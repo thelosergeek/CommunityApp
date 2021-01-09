@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity() {
         tablayout.setupWithViewPager(viewpager)
 
         tablayout.getTabAt(0)?.setIcon(R.drawable.project)
-        tablayout.getTabAt(1)?.setIcon(R.drawable.feeds)
+        tablayout.getTabAt(1)?.setIcon(R.drawable.ic_baseline_dynamic_feed_24)
 
     }
 

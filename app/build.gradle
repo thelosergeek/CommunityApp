@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     compileSdkVersion 30
@@ -46,6 +47,7 @@ dependencies {
 
     implementation "android.arch.lifecycle:runtime:1.1.1"
     implementation 'com.google.firebase:firebase-database:19.5.1'
+    implementation 'com.google.firebase:firebase-crashlytics:17.3.0'
     annotationProcessor "android.arch.lifecycle:compiler:1.1.0"
 
     implementation "android.arch.lifecycle:extensions:1.1.1"
@@ -112,5 +114,13 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:6.2.1'
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
 
+    implementation 'com.faltenreich:skeletonlayout:4.0.0'
+
+    implementation 'com.ethanhua:skeleton:1.1.2'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
+
+    implementation 'com.github.skydoves:androidveil:1.0.8'
+
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
 }

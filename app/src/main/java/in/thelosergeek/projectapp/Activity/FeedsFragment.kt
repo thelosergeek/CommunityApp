@@ -16,72 +16,41 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
-
-
-
-
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class FeedsFragment : Fragment() {
     //  private lateinit var viewModel: PostViewModel
-//    var adapter: PostAdapter
-//        get() {
-//        }
-//    var databaseReference: DatabaseReference? = null
-//    var firebaseAuth: FirebaseAuth? = null
-//
-//    var name: String? = null
-//    var photo: kotlin.String? = null
-//    var email: kotlin.String? = null
-//    var uid: kotlin.String? = null
-//    val post: TextView? = null
-    var TAG:String = "TAG"
 
     var firebaseAuth: FirebaseAuth? = null
     var recyclerView: RecyclerView? = null
- //   var postlist: List<ModelPost>? = null
-    var postAdapter: PostAdapter? = null
-//    lateinit var textView:TextView
-
-
-    private lateinit var mAdapter: FirebaseRecyclerAdapter<ModelPost, RecyclerView.ViewHolder>
 
 
     lateinit var list: ArrayList<ModelPost>
     fun FeedsFragment() {
         // Required empty public constructor
     }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    private val REQUEST_CODE = 600
 
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         //viewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
         val view: View = inflater.inflate(R.layout.fragment_feeds, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
         recyclerView = view.findViewById(R.id.fragment_feeds_RV)
-        val linearLayoutManager = LinearLayoutManager(activity)
 
+
+        val linearLayoutManager = LinearLayoutManager(activity)
         linearLayoutManager.stackFromEnd = true
         linearLayoutManager.reverseLayout = true
 
-//        textView = view.findViewById(R.id.tv_post)
-
- //       postlist = ArrayList()
-
         list = ArrayList()
 
-        recyclerView?.setLayoutManager(linearLayoutManager);        // Inflate the layout for this fragment
-
-
-        //postlist = java.util.List<ModelPost>
+        recyclerView?.setLayoutManager(linearLayoutManager);
 
         loadPosts()
 
@@ -90,30 +59,25 @@ class FeedsFragment : Fragment() {
         if (button != null) {
             button.setOnClickListener {
                 val intent = Intent(activity, NewPostActivity::class.java)
-                startActivity(intent)
-
+                startActivityForResult(intent,REQUEST_CODE)
             }
         }
-
         return view
     }
 
+
     private fun loadPosts() {
         val databaseReference = FirebaseDatabase.getInstance().getReference("posts")
-
         databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("RestrictedApi")
             override fun onDataChange(@NonNull dataSnapshot: DataSnapshot) {
                 list.clear();
                 for (ds in dataSnapshot.children) {
-
                     val modelPost: ModelPost? = ds.getValue(ModelPost::class.java)
                     if (modelPost != null) {
                         list.add(modelPost)
                     }
-
-
-                    recyclerView?.adapter = PostAdapter(context as FragmentActivity?,list )
+                    recyclerView?.adapter = PostAdapter(context as FragmentActivity?, list)
 
 
                 }
@@ -124,12 +88,10 @@ class FeedsFragment : Fragment() {
             }
         })
     }
+
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
-
-
-
 
     }
 }
@@ -165,7 +127,7 @@ class FeedsFragment : Fragment() {
 
 //        fragment_feeds_RV.adapter = adapter
 
-        // tv_post.text = name
+// tv_post.text = name
 //        viewModel.fetchPosts()
 //        viewModel.posts.observe(viewLifecycleOwner, Observer {
 //            adapter.setPost(it)

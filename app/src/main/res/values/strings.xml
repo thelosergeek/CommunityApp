@@ -15,6 +15,6 @@
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
     <string name="error_field">String Required</string>
-    <string name="project_1"><u>Project 1:</u></string>
+    <string name="project_1"><b>Project 1: PySyft</b></string>
     <string name="pysyft"><b>PySyft</b></string>
 </resources>
