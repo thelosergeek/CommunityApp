@@ -23,7 +23,7 @@ feature to make a post regarding anything they want and people can react to it u
 
 
 <img src="https://i.ibb.co/HnYLbd1/Projects.png" width="30%"></img>
-<img src="https://i.ibb.co/h2sQBF7/image-004.png" width="30%"></img>
+<img src="https://i.ibb.co/854CTWY/feeds.png" width="30%"></img>
 
 
                 Projects Screen                     Feed Section Screen                      
@@ -46,5 +46,5 @@ Activity | Status
 Login/Register Using Email | :heavy_check_mark:
 Login Using Github | :x:
 Chat Activity | :heavy_check_mark:
-Feeds Fragment | :x:
+Feeds Fragment | :heavy_check_mark:
 Projects Fragment | :x:
