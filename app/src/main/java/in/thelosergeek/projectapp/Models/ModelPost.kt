@@ -12,12 +12,13 @@ data class ModelPost(
     val postDate: String?= null,
     val postTime: String? = null,
     val postImage: String? = null,
+    val postPDF: String? = null,
     val time: Date = Date()
 
 )
  {
 
     constructor() :
-            this("", "", "", "", "","","","","", Date(0L))
+            this("", "", "", "", "","","","","","", Date(0L))
 
 }

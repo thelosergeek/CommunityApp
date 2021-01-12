@@ -1,158 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:android1="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android1:clickable="true"
-        android1:focusable="true"
-        android1:orientation="horizontal"
-        android1:padding="10dp">
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android1:clickable="true"
+    android1:focusable="true"
+    android1:orientation="horizontal"
+    android1:padding="10dp">
 
 
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/TV_profile"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:adjustViewBounds="true"
-            android:clickable="true"
-            android:focusable="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/defaultavatarastronaut" />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/TV_profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/defaultavatarastronaut" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
+
+            <TextView
+                android:id="@+id/TV_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Inam Khan"
+                android:textColor="@color/Black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-
-
-
-
-                <TextView
-                    android:id="@+id/TV_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="12dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:text="Inam Khan"
-                    android:textColor="@color/Black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/DateTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:lines="1"
-                        android:text="06/11/2020"
-                        android:textColor="@color/Black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/TimeTV"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|right"
-                        android:ellipsize="end"
-                        android:lines="1"
-                        android:text="12/12/12"
-                        android:textColor="@color/Black"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_post"
-                    android:layout_width="match_parent"
+                    android:id="@+id/DateTV"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="12dp"
                     android:ellipsize="end"
-                    android:text="HeyGuys, I'm think about a new project"
+                    android:lines="1"
+                    android:text="06/11/2020"
                     android:textColor="@color/Black"
-                    android:textSize="16sp" />
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/post_attach"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="3dp" />
-
+                <TextView
+                    android:id="@+id/TimeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="12/12/12"
+                    android:textColor="@color/Black"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
-            <LinearLayout
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_post"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="12dp"
+                android:ellipsize="end"
+                android:text="HeyGuys, I'm think about a new project"
+                android:textColor="@color/Black"
+                android:textSize="16sp" />
 
-                <Button
-                    android:id="@+id/btn_like"
-                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:text="Like"
-                    android:textColor="@color/Black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:icon="@drawable/ic_like" />
+            <ImageView
+                android:id="@+id/post_attach"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="3dp" />
 
-                <Button
-                    android:id="@+id/btn_comment"
-                    style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:text="Comment"
-                    android:textColor="@color/Black"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    app:icon="@drawable/ic_comment" />
-
-
-            </LinearLayout>
 
 
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/btn_like"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:text="Like"
+                android:textColor="@color/Black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_like" />
+
+            <Button
+                android:id="@+id/btn_comment"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:text="Comment"
+                android:textColor="@color/Black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:icon="@drawable/ic_comment" />
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
+
+
+</LinearLayout>
 

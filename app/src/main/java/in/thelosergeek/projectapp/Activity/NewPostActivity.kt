@@ -9,8 +9,10 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.Nullable
@@ -54,11 +56,17 @@ class NewPostActivity : AppCompatActivity() {
     private val IMAGE_PICK_CAMERA = 300
     private val IMAGE_PICK_GALLERY = 400
 
+    private val PDF_PICK_CODE = 500
+
+
     lateinit var cameraPermission: Array<String>
     lateinit var storagePermission: Array<String>
 
     var post_image: ImageView? = null
     var progressDialog: ProgressDialog? = null
+
+    private var pdffilepath: Uri? = null
+
     //private lateinit var viewModel: PostViewModel
 
 
@@ -70,7 +78,7 @@ class NewPostActivity : AppCompatActivity() {
         cameraPermission =
             arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         storagePermission = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        progressDialog =  ProgressDialog(this);
+        progressDialog = ProgressDialog(this);
 
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
@@ -118,7 +126,7 @@ class NewPostActivity : AppCompatActivity() {
         }
 
         btn_attach_document.setOnClickListener {
-            //DocumentPick()
+            DocumentPick()
         }
 
 
@@ -131,10 +139,12 @@ class NewPostActivity : AppCompatActivity() {
 //                return@setOnClickListener
 //
 //            }
-            if (image_uri == null) {
-                uploadData(description, "noImage");
+            if (image_uri == null && pdffilepath == null) {
+                uploadData(description, "noImage", "noPDF");
+            } else if (pdffilepath == null) {
+                uploadData(description, image_uri.toString(), "noPDF");
             } else {
-                 uploadData(description, image_uri.toString());
+                uploadData(description, "noImage", pdffilepath.toString())
             }
 
             // uploadData(description);
@@ -147,7 +157,30 @@ class NewPostActivity : AppCompatActivity() {
         }
     }
 
-    private fun uploadData(description: String, uri: String) {
+    private fun DocumentPick() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            intent = Intent(
+                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                Uri.parse("package:" + getPackageName())
+            );
+            startActivity(intent);
+            return;
+        }
+
+        //creating an intent for file chooser
+        intent = Intent();
+        intent.setType("application/pdf");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PDF_PICK_CODE);
+    }
+
+
+    private fun uploadData(description: String, uri: String, pdfuri: String) {
 
         progressDialog?.setMessage("Uploading...");
         progressDialog?.show();
@@ -163,50 +196,100 @@ class NewPostActivity : AppCompatActivity() {
         if (!uri.equals("noImage")) {
             val reference: StorageReference =
                 FirebaseStorage.getInstance().getReference().child(timeStamp)
-                reference.putFile(Uri.parse(uri)).addOnSuccessListener(
-                    OnSuccessListener<UploadTask.TaskSnapshot>() { taskSnapshot ->
+            reference.putFile(Uri.parse(uri)).addOnSuccessListener(
+                OnSuccessListener<UploadTask.TaskSnapshot>() { taskSnapshot ->
 
 //                    lateinit var taskSnapShot: UploadTask.TaskSnapshot
-                        val uriTask: Task<Uri> = taskSnapshot.storage.downloadUrl
-                        while (!uriTask.isSuccessful);
+                    val uriTask: Task<Uri> = taskSnapshot.storage.downloadUrl
+                    while (!uriTask.isSuccessful);
 
-                        var downloadUri: String = uriTask.getResult().toString();
-                        if (uriTask.isSuccessful()) {
-                            val hashMap: HashMap<Any, String> = HashMap()
-                            hashMap["uid"] =
-                                mCurrentUid  //curentuid, name, email, timestamp, description
-                            hashMap["id"] = timeStamp
-                            hashMap["name"] = name
-                            hashMap["image"] = photo
-                            hashMap["email"] = userEmail
-                            hashMap["postDescription"] = description
-                            hashMap["postDate"] = datePost
-                            hashMap["postImage"] = downloadUri
-                            hashMap["postTime"] = timePost
+                    var downloadUri: String = uriTask.getResult().toString();
+                    if (uriTask.isSuccessful()) {
+                        val hashMap: HashMap<Any, String> = HashMap()
+                        hashMap["uid"] =
+                            mCurrentUid  //curentuid, name, email, timestamp, description
+                        hashMap["id"] = timeStamp
+                        hashMap["name"] = name
+                        hashMap["image"] = photo
+                        hashMap["email"] = userEmail
+                        hashMap["postDescription"] = description
+                        hashMap["postDate"] = datePost
+                        hashMap["postImage"] = downloadUri
+                        hashMap["postTime"] = timePost
+                        hashMap["postPDF"] = "noPDF"
 
-                            val ref = FirebaseDatabase.getInstance().getReference("posts")
-                            ref.child(mCurrentUid).setValue(hashMap).addOnSuccessListener {
-                                Toast.makeText(this, "Post Published", Toast.LENGTH_SHORT).show()
+                        val ref = FirebaseDatabase.getInstance().getReference("posts")
+                        ref.child(timeStamp).setValue(hashMap).addOnSuccessListener {
+                            Toast.makeText(this, "Post Published", Toast.LENGTH_SHORT).show()
 
-                                progressDialog?.dismiss();
-                                post_image?.setOnClickListener { image_uri = null }
-                                postEdtv.setText("")
-                                post_image?.setImageURI(null)
-                                image_uri = null
-                            }.addOnFailureListener { e ->
-                                progressDialog?.dismiss();
-                                Toast.makeText(this, "" + e.message, Toast.LENGTH_SHORT).show()
-                            }
+                            progressDialog?.dismiss();
+                            post_image?.setOnClickListener { image_uri = null }
+                            postEdtv.setText("")
+                            post_image?.setImageURI(null)
+                            image_uri = null
+                        }.addOnFailureListener { e ->
+                            progressDialog?.dismiss();
+                            Toast.makeText(this, "" + e.message, Toast.LENGTH_SHORT).show()
                         }
                     }
+                }
 
-                ).addOnFailureListener(OnFailureListener {
-                    progressDialog?.dismiss();
+            ).addOnFailureListener(OnFailureListener {
+                progressDialog?.dismiss();
 //                @Override
 //                public void onFailure(@NonNull Exception e) {
 //                    Toast.makeText(this,"",Toast.LENGTH_SHORT).show();
 //                }
-                })
+            })
+        } else if (!pdfuri.equals("noPDF")) {
+            val reference: StorageReference =
+                FirebaseStorage.getInstance().getReference().child(timeStamp)
+            reference.putFile(Uri.parse(pdfuri)).addOnSuccessListener(
+                OnSuccessListener<UploadTask.TaskSnapshot>() { taskSnapshot ->
+
+//                    lateinit var taskSnapShot: UploadTask.TaskSnapshot
+                    val uriTask: Task<Uri> = taskSnapshot.storage.downloadUrl
+                    while (!uriTask.isSuccessful);
+
+                    var downloadUri: String = uriTask.getResult().toString();
+                    if (uriTask.isSuccessful()) {
+                        val hashMap: HashMap<Any, String> = HashMap()
+                        hashMap["uid"] =
+                            mCurrentUid  //curentuid, name, email, timestamp, description
+                        hashMap["id"] = timeStamp
+                        hashMap["name"] = name
+                        hashMap["image"] = photo
+                        hashMap["email"] = userEmail
+                        hashMap["postDescription"] = description
+                        hashMap["postDate"] = datePost
+                        hashMap["postImage"] = "noImage";
+                        hashMap["postTime"] = timePost
+                        hashMap["postPDF"] = downloadUri
+
+                        val ref = FirebaseDatabase.getInstance().getReference("posts")
+                        ref.child(timeStamp).setValue(hashMap).addOnSuccessListener {
+                            Toast.makeText(this, "Post Published", Toast.LENGTH_SHORT).show()
+
+                            progressDialog?.dismiss();
+                            //post_image?.setOnClickListener { image_uri = null }
+                            postEdtv.setText("")
+                           // post_image?.setImageURI(null)
+                           // image_uri = null
+
+                        }.addOnFailureListener { e ->
+                            progressDialog?.dismiss();
+                            Toast.makeText(this, "" + e.message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+            ).addOnFailureListener(OnFailureListener {
+                progressDialog?.dismiss();
+//                @Override
+//                public void onFailure(@NonNull Exception e) {
+//                    Toast.makeText(this,"",Toast.LENGTH_SHORT).show();
+//                }
+            })
         } else {
             val hashMap: HashMap<Any, String> = HashMap()
             hashMap["uid"] = mCurrentUid  //curentuid, name, email, timestamp, description
@@ -218,8 +301,9 @@ class NewPostActivity : AppCompatActivity() {
             hashMap["postDate"] = datePost
             hashMap["postImage"] = "noImage";
             hashMap["postTime"] = timePost
+            hashMap["postPDF"] = "noPDF";
             val ref = FirebaseDatabase.getInstance().getReference("posts")
-            ref.child(mCurrentUid).setValue(hashMap).addOnSuccessListener {
+            ref.child(timeStamp).setValue(hashMap).addOnSuccessListener {
                 Toast.makeText(this, "Post Published", Toast.LENGTH_SHORT).show()
 
                 progressDialog?.dismiss();
@@ -344,9 +428,17 @@ class NewPostActivity : AppCompatActivity() {
                 post_image?.setImageURI(image_uri)
             } else if (requestCode == IMAGE_PICK_CAMERA) {
                 post_image?.setImageURI(image_uri)
-            }
+            } else if (requestCode == PDF_PICK_CODE && resultCode == RESULT_OK && data != null && data.getData() != null)
+                if (data.getData() != null) {
+                    //uploading the file
+                    pdffilepath = data?.data
+
+                    {
+
+                    }
+                }
+            super.onActivityResult(requestCode, resultCode, data)
         }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 }
 
