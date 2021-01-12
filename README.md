@@ -22,8 +22,7 @@ their own email address which they used to register.
 feature to make a post regarding anything they want and people can react to it using reactions or comments.
 
 
-<img src="https://i.ibb.co/HnYLbd1/Projects.png" width="30%"></img>
-<img src="https://i.ibb.co/854CTWY/feeds.png" width="30%"></img>
+<img src="https://i.ibb.co/HnYLbd1/Projects.png" width="30%"></img>   <img src="https://i.ibb.co/854CTWY/feeds.png" width="30%"></img>
 
 
                 Projects Screen                     Feed Section Screen                      
@@ -44,7 +43,14 @@ feature to make a post regarding anything they want and people can react to it u
 Activity | Status
 ------------ | -------------
 Login/Register Using Email | :heavy_check_mark:
+Login/Register Using Google Sign in | :x:
 Login Using Github | :x:
 Chat Activity | :heavy_check_mark:
 Feeds Fragment | :heavy_check_mark:
 Projects Fragment | :x:
+Image Support | :heavy_check_mark:
+Document Support | :x:
+Emoji Support | :heavy_check_mark:
+SkeletonLayout | :x:
+Like Feature | :x:
+Comment Feature | :x:
