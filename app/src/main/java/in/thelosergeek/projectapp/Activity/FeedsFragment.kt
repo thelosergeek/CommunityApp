@@ -5,7 +5,9 @@ import `in`.thelosergeek.projectapp.Models.ModelPost
 import `in`.thelosergeek.projectapp.R
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +24,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.singlepostlayout.*
 
 class FeedsFragment : Fragment() {
     //  private lateinit var viewModel: PostViewModel
@@ -37,7 +41,11 @@ class FeedsFragment : Fragment() {
     private val REQUEST_CODE = 600
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         //viewModel = ViewModelProviders.of(this).get(PostViewModel::class.java)
         val view: View = inflater.inflate(R.layout.fragment_feeds, container, false)
         firebaseAuth = FirebaseAuth.getInstance()
@@ -54,12 +62,13 @@ class FeedsFragment : Fragment() {
 
         loadPosts()
 
+
         val button = view?.findViewById<FloatingActionButton>(R.id.add_feeds_button)
 
         if (button != null) {
             button.setOnClickListener {
                 val intent = Intent(activity, NewPostActivity::class.java)
-                startActivityForResult(intent,REQUEST_CODE)
+                startActivityForResult(intent, REQUEST_CODE)
             }
         }
         return view
@@ -67,9 +76,9 @@ class FeedsFragment : Fragment() {
 
 
     private fun loadPosts() {
+
         val databaseReference = FirebaseDatabase.getInstance().getReference("posts")
         databaseReference.addValueEventListener(object : ValueEventListener {
-            @SuppressLint("RestrictedApi")
             override fun onDataChange(@NonNull dataSnapshot: DataSnapshot) {
                 list.clear();
                 for (ds in dataSnapshot.children) {
@@ -78,6 +87,13 @@ class FeedsFragment : Fragment() {
                         list.add(modelPost)
                     }
                     recyclerView?.adapter = PostAdapter(context as FragmentActivity?, list)
+
+
+
+
+
+
+
 
 
                 }

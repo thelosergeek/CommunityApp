@@ -186,7 +186,7 @@ class NewPostActivity : AppCompatActivity() {
         progressDialog?.show();
 
         val df: DateFormat = SimpleDateFormat("dd-MM-yyyy")
-        val tf: DateFormat = SimpleDateFormat("HH:mm:ss")
+        val tf: DateFormat = SimpleDateFormat("HH:mm")
         val date: String = df.format(Calendar.getInstance().getTime())
         val time: String = tf.format(Calendar.getInstance().time)
         val timeStamp = System.currentTimeMillis().toString()
@@ -246,8 +246,6 @@ class NewPostActivity : AppCompatActivity() {
                 FirebaseStorage.getInstance().getReference().child(timeStamp)
             reference.putFile(Uri.parse(pdfuri)).addOnSuccessListener(
                 OnSuccessListener<UploadTask.TaskSnapshot>() { taskSnapshot ->
-
-//                    lateinit var taskSnapShot: UploadTask.TaskSnapshot
                     val uriTask: Task<Uri> = taskSnapshot.storage.downloadUrl
                     while (!uriTask.isSuccessful);
 
@@ -273,8 +271,10 @@ class NewPostActivity : AppCompatActivity() {
                             progressDialog?.dismiss();
                             //post_image?.setOnClickListener { image_uri = null }
                             postEdtv.setText("")
-                           // post_image?.setImageURI(null)
+                           //post_image?.setImageURI(null)
                            // image_uri = null
+                            pdfView.fromUri(pdffilepath)
+                            pdfView.fromAsset(downloadUri)
 
                         }.addOnFailureListener { e ->
                             progressDialog?.dismiss();
@@ -307,7 +307,7 @@ class NewPostActivity : AppCompatActivity() {
                 Toast.makeText(this, "Post Published", Toast.LENGTH_SHORT).show()
 
                 progressDialog?.dismiss();
-                post_image?.setOnClickListener { image_uri = null }
+                //post_image?.setOnClickListener { image_uri = null }
                 postEdtv.setText("")
                 post_image?.setImageURI(null)
                 image_uri = null

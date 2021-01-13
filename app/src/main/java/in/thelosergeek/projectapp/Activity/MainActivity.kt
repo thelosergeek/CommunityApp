@@ -1,80 +1,42 @@
 package `in`.thelosergeek.projectapp.Activity
 
 import `in`.thelosergeek.projectapp.Adapters.ViewPagerAdapter
-import `in`.thelosergeek.projectapp.Models.User
 import `in`.thelosergeek.projectapp.R
-import android.widget.ImageView
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
-
-const val nUID = "uid"
-const val nNAME = "name"
-const val nIMAGE = "thumbImage"
-
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var profilename: TextView
+    lateinit var profileimage: ImageView
     lateinit var toogle: ActionBarDrawerToggle
     private lateinit var auth: FirebaseAuth
 
-    private val name: String by lazy {
-        intent.getStringExtra(nNAME)!!
-    }
-    private val image: String by lazy {
-        intent.getStringExtra(nIMAGE)!!
-    }
-//    private val mCurrentUid: String by lazy {
-//        FirebaseAuth.getInstance().uid!!
-//    }
-    lateinit var currentUser: User
-
+    private val mCurrentUid: String by lazy { FirebaseAuth.getInstance().uid!! }
+    private var name: String? = null
+    private var photo: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val TAG = "MyMessage"
-
-//        val dbref = FirebaseFirestore.getInstance().collection("users").document(mCurrentUid)
-//        dbref.get().addOnSuccessListener { document ->
-//            if (document != null) {
-////                    Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-//                var namesa = document.getString("name").toString()
-//                Log.d(TAG, "Name: ${namesa}")
-//
-//
-//            } else {
-//
-//            }
-//        }
-
-
-
 
         auth = FirebaseAuth.getInstance()
-        val headerView: View = navigationView.getHeaderView(0)
-        val navUser: TextView = headerView.findViewById(R.id.navigation_name)
-      //  navUser.text = currentUser.name
-       // Log.d(TAG, "Name: ${mCurrentUid}")
-
-
         setUpNavigationDrawer()
         setUpFragments()
-
 
     }
 
     private fun setUpNavigationDrawer() {
+
         toogle = ActionBarDrawerToggle(this, Drawerlayout, toolbar, R.string.open, R.string.close)
         Drawerlayout.addDrawerListener(toogle)
         toogle.syncState()
@@ -101,6 +63,27 @@ class MainActivity : AppCompatActivity() {
             true
 
         }
+
+        /*Initializing Header View*/
+        profilename = navigationView.getHeaderView(0).findViewById(R.id.navigation_name) as TextView
+        profileimage = navigationView.getHeaderView(0).findViewById(R.id.navigation_image) as ImageView
+        val docRef = FirebaseFirestore.getInstance().collection("users").document(mCurrentUid)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    name = document.get("name") as String
+                    photo = document.get("imageUrl") as String
+
+                    /*Putting header view values from Firestore*/
+                    profilename.text = name
+                    Picasso.get().load(photo).into(profileimage)
+                } else {
+                }
+
+            }
+            .addOnFailureListener {
+            }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -132,7 +115,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         } else {
-//            Toast.makeText(this, "", Toast.LENGTH_LONG).show()
         }
     }
 }

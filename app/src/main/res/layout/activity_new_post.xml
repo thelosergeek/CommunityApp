@@ -13,96 +13,99 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/inputBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="5dp">
-
-        <com.google.android.material.card.MaterialCardView
+        <RelativeLayout
+            android:id="@+id/inputBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            app:cardCornerRadius="30dp">
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp">
 
-            <RelativeLayout
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                app:cardCornerRadius="30dp">
 
-                <ImageView
-                    android:id="@+id/emojibtn"
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="10dp"
-                    android:src="@drawable/ic_baseline_emoji_emotions_24" />
-
-                <com.vanniktech.emoji.EmojiEditText
-                    android:id="@+id/postEdtv"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toEndOf="@id/emojibtn"
-                    android:background="@android:color/white"
-                    android:hint="What's on your mind?"
-                    android:imeOptions="actionGo"
-                    android:inputType="textMultiLine|textCapSentences|textLongMessage|text"
-                    android:lineSpacingExtra="5dp"
-                    android:maxHeight="120dp"
-                    android:maxLength="700"
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
-                    android:singleLine="false"
-                    android:textColorHint="#b6b6b6"
-                    android:textSize="14sp" />
+                    android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/btn_attach"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="265dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_toEndOf="@id/emojibtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_outline_camera_alt_24"/>
+                    <ImageView
+                        android:id="@+id/emojibtn"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_baseline_emoji_emotions_24" />
 
-                <ImageView
-                    android:id="@+id/btn_attach_document"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="300dp"
-                    android:layout_marginEnd="15dp"
-                    android:layout_toEndOf="@id/emojibtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_baseline_attachment_24"/>
+                    <com.vanniktech.emoji.EmojiEditText
+                        android:id="@+id/postEdtv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_toEndOf="@id/emojibtn"
+                        android:background="@android:color/white"
+                        android:hint="What's on your mind?"
+                        android:imeOptions="actionGo"
+                        android:inputType="textMultiLine|textCapSentences|textLongMessage|text"
+                        android:lineSpacingExtra="5dp"
+                        android:maxHeight="120dp"
+                        android:maxLength="700"
+                        android:paddingTop="18dp"
+                        android:paddingBottom="18dp"
+                        android:singleLine="false"
+                        android:textColorHint="#b6b6b6"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/btn_attach"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="265dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@id/emojibtn"
+                        android:src="@drawable/ic_outline_camera_alt_24" />
+
+                    <ImageView
+                        android:id="@+id/btn_attach_document"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="300dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_toEndOf="@id/emojibtn"
+                        android:src="@drawable/ic_baseline_attachment_24" />
 
 
+                </RelativeLayout>
 
-            </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
 
-    </RelativeLayout>
+        <ImageView
+            android:id="@+id/etImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <ImageView
-        android:id="@+id/etImage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/btn_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="POST"
-        android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="POST" />
 
 
     </LinearLayout>
