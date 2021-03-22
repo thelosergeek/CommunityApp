@@ -7,14 +7,16 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="in.thelosergeek.projectapp.Utility.FirebaseOffline"
+        android:name=".Utility.FirebaseOffline"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
-        <activity android:name=".Activity.ProfileEditActivity"></activity>
+        <activity android:name=".AddMarketPlaceActivity"></activity>
+        <activity android:name=".Activity.MarketPlaceActivity" />
+        <activity android:name=".Activity.ProfileEditActivity" />
         <activity android:name=".Activity.NewPostActivity" />
         <activity android:name=".Activity.ChatActivity" />
         <activity android:name=".Activity.ForgotPasswordActivity" />

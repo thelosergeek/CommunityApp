@@ -46,7 +46,7 @@ class ChatActivity : AppCompatActivity() {
 
     lateinit var currentUser: User
 
-//    private val messages = mutableListOf<ChatEvent>()
+    private val messages = mutableListOf<ChatEvent>()
     lateinit var chatAdapter: ChatAdapter
 
     private val mutableItems: MutableList<ChatEvent> = mutableListOf()

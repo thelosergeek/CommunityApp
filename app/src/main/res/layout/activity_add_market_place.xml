@@ -5,7 +5,7 @@
     android:id="@+id/rootView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.NewPostActivity">
+    tools:context=".AddMarketPlaceActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,6 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/inputBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
@@ -29,26 +28,18 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp">
 
-                    <ImageView
-                        android:id="@+id/emojibtn"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="10dp"
-                        android:src="@drawable/ic_baseline_emoji_emotions_24" />
 
-                    <com.vanniktech.emoji.EmojiEditText
-                        android:id="@+id/postEdtv"
+                    <EditText
+                        android:id="@+id/descriptionBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="10dp"
-                        android:layout_toEndOf="@id/emojibtn"
                         android:background="@android:color/white"
-                        android:hint="What's on your mind?"
+                        android:hint="What are you selling?"
                         android:imeOptions="actionGo"
                         android:inputType="textMultiLine|textCapSentences|textLongMessage|text"
                         android:lineSpacingExtra="5dp"
@@ -61,24 +52,15 @@
                         android:textSize="14sp" />
 
                     <ImageView
-                        android:id="@+id/btn_attach"
+                        android:id="@+id/btn_attach_photo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="265dp"
                         android:layout_marginEnd="15dp"
-                        android:layout_toEndOf="@id/emojibtn"
                         android:src="@drawable/ic_outline_camera_alt_24" />
 
-                    <ImageView
-                        android:id="@+id/btn_attach_document"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="300dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_toEndOf="@id/emojibtn"
-                        android:src="@drawable/ic_baseline_attachment_24" />
+
 
 
                 </RelativeLayout>

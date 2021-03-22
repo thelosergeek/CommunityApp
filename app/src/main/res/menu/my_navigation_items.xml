@@ -5,5 +5,7 @@
     <item android:title="My Profile" android:id="@+id/myprofile"/>
     <item android:title="Friends" android:id="@+id/friends"/>
     <item android:title="Inbox" android:id="@+id/inbox"/>
+    <item android:title="Market Place" android:id="@+id/marketPlace"/>
+    <item android:title="Internships/Job Posting" android:id="@+id/internships" />
     <item android:title="Logout" android:id="@+id/logout"/>
 </menu>
