@@ -66,9 +66,9 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/Black"
             android:text="Login"
-            app:cornerRadius="10dp"
-            android:backgroundTint="@color/Black"/>
+            app:cornerRadius="10dp" />
 
         <RelativeLayout
             android:id="@+id/relativelayout"
@@ -127,15 +127,14 @@
             app:cornerRadius="10dp"/>
 
         <com.google.android.gms.common.SignInButton
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
             android:id="@+id/google_signin_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/github_login_btn"
             android:layout_centerInParent="true"
-            android:layout_marginBottom="15dp"
-            />
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp" />
 
 
 

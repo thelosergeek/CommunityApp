@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var toogle: ActionBarDrawerToggle
     private lateinit var auth: FirebaseAuth
 
-    private val mCurrentUid: String by lazy { FirebaseAuth.getInstance().uid!! }
+    private val mCurrentUid: String? = FirebaseAuth.getInstance().uid
     private var name: String? = null
     private var photo: String? = null
 
@@ -70,22 +70,28 @@ class MainActivity : AppCompatActivity() {
         /*Initializing Header View*/
         profilename = navigationView.getHeaderView(0).findViewById(R.id.navigation_name) as TextView
         profileimage = navigationView.getHeaderView(0).findViewById(R.id.navigation_image) as ImageView
-        val docRef = FirebaseFirestore.getInstance().collection("users").document(mCurrentUid)
-        docRef.get()
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    name = document.get("name") as String
-                    photo = document.get("imageUrl") as String
+        val docRef = mCurrentUid?.let {
+            FirebaseFirestore.getInstance().collection("users").document(
+                it
+            )
+        }
+        if (docRef != null) {
+            docRef.get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        name = document.get("name") as String
+                        photo = document.get("imageUrl") as String
 
-                    /*Putting header view values from Firestore*/
-                    profilename.text = name
-                    Picasso.get().load(photo).into(profileimage)
-                } else {
+                        /*Putting header view values from Firestore*/
+                        profilename.text = name
+                        Picasso.get().load(photo).into(profileimage)
+                    } else {
+                    }
+
                 }
-
-            }
-            .addOnFailureListener {
-            }
+                .addOnFailureListener {
+                }
+        }
 
     }
 

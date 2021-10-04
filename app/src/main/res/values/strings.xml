@@ -4,7 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="or">OR</string>
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
     <string name="monday">Monday</string>
@@ -17,4 +16,11 @@
     <string name="error_field">String Required</string>
     <string name="project_1"><b>Project 1: PySyft</b></string>
     <string name="pysyft"><b>PySyft</b></string>
+    <string name="sign_up">Sign-up</string>
+    <string name="register">Register</string>
+    <string name="already_have_an_account_n_login_here">Already Have an Account? \n Login Here</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="or">OR</string>
 </resources>
